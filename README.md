@@ -16,7 +16,7 @@ A responsive, static fuel log designed for GitHub Pages. It tracks multiple vehi
 3. In Fuelwise, choose **Repository sync** and enter owner, repository, branch, file path and token.
 4. The app reads/writes `fuel-log.json` using the GitHub Contents API. The token is held in page memory only (not written to local storage or the JSON export). Re-enter it after a page refresh.
 
-Keep the token private. Anyone who can use the browser session while the token is entered may be able to use its repository permissions. For stronger security, use a small server-side proxy or GitHub App rather than putting a token into a browser app.
+Security note: a remembered token is stored unencrypted in browser local storage. Anyone with access to that browser profile, or malicious JavaScript running on the site, could potentially access it. Use a fine-grained token limited to this single private repository, on a trusted personal device; revoke it from GitHub if the device is lost or shared. For stronger security, replace browser-token access with a server-side proxy or GitHub App.
 
 ## Mileage calculation
 
@@ -48,3 +48,7 @@ Use **Export JSON** to download the complete log. **Import JSON** replaces the c
 ```
 
 No build tools or dependencies are required.
+
+## Appearance and charts
+
+Use the header theme button to switch between light and dark themes; the choice is remembered on the device. The dashboard includes a mileage trend line (actual vs estimated km/L) and a fuel-spend chart for the selected vehicle, using up to the latest 12 fill-ups.
